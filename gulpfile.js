@@ -13,6 +13,7 @@ const gcmq = require('gulp-group-css-media-queries')
 const imagemin = require('gulp-imagemin')
 const webp = require('gulp-webp')
 const webpHTML = require('gulp-webp-html')
+const babel = require('gulp-babel')
 //webp for css
 //svgSprite for svg
 
@@ -46,6 +47,11 @@ function  js() {
     .pipe(include({
       prefix: '@@'
     }))
+    .pipe(
+      babel({
+        presets: ['@babel/env']
+      })
+    )
     .pipe(dest('dist/js'))
     .pipe(uglify())
     .pipe(
